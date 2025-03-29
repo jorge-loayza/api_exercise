@@ -1,0 +1,21 @@
+{
+  "type": "module",
+  "name": "api_exercise",
+  "version": "1.0.0",
+  "description": "Ejercicio api",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "Jorge Loayza",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
