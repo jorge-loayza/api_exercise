@@ -1,4 +1,4 @@
-const users = [
+let users = [
   { id: 1, nombre: 'Usuario uno', edad: 20 },
   { id: 2, nombre: 'Usuario dos', edad: 21 },
   { id: 3, nombre: 'Usuario tres', edad: 21 },
@@ -31,21 +31,19 @@ const getUsers = (req, res) => {
     );
   }
 
-  // const page = parseInt(req.query.page) || 1;
-  // const limit = parseInt(req.query.limit) || 10;
-  // const startIndex = (page - 1) * limit;
-  // const endIndex = page * limit;
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
 
-  // const results = filteredUsers.slice(startIndex, endIndex);
+  const results = filteredUsers.slice(startIndex, endIndex);
 
-  // res.send({
-  //   results,
-  //   page,
-  //   limit,
-  //   total: filteredUsers.length,
-  // });
-
-  res.send(filteredUsers);
+  res.send({
+    results,
+    page,
+    limit,
+    total: filteredUsers.length,
+  });
 };
 
 const getUserById = (req, res) => {
@@ -60,7 +58,7 @@ const getUserById = (req, res) => {
 };
 
 const createUser = (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   const newUser = {
     id: users.length + 1,
     nombre: req.body.nombre,
@@ -89,7 +87,7 @@ const deleteUser = (req, res) => {
 
   if (userIndex !== -1) {
     users.splice(userIndex, 1);
-    res.status(200).send({ message: 'Usuario eliminado exitosamente' }); 
+    res.status(200).send({ message: 'Usuario eliminado exitosamente' });
   } else {
     res.status(404).send({ message: 'Usuario no encontrado' });
   }
@@ -112,6 +110,11 @@ const deleteAllUsers = (req, res) => {
   users = [];
   res.status(204).send();
 };
+
+const protegida = (req, res) => {
+  res.send({ message: 'Pudiste acceder a la ruta protegida mediante token' });
+};
+
 export {
   getUsers,
   getUserById,
@@ -120,4 +123,5 @@ export {
   deleteUser,
   createMultipleUsers,
   deleteAllUsers,
+  protegida,
 };

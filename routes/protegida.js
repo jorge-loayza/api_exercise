@@ -13,12 +13,6 @@ import authMiddleware from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', authMiddleware, getUsers);
-router.get('/:id', getUserById);
-router.post('/', createUser);
-router.put('/:id', updateUser);
-router.delete('/:id', deleteUser);
-router.post('/multiple', createMultipleUsers);
-router.delete('/all', deleteAllUsers);
+router.get('/protegida', authMiddleware, protegida);
 
 export default router;
